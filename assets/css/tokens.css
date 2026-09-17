@@ -1,0 +1,132 @@
+/* ============================================================
+   VEKTRA - TOKENS
+   Único lugar onde as cores existem. Para trocar a identidade
+   visual do site inteiro, mexa só neste arquivo.
+
+   Paleta oficial:
+   #0B0E10  #08383C  #C16639  #FFFFFF  #202528  #8C979A
+   ============================================================ */
+
+:root{
+  /* --- Constantes de marca (não mudam entre os temas) --- */
+  --teal:#08383C;
+  --clay:#C16639;
+  --const-ink:#0B0E10;
+  --const-white:#FFFFFF;
+
+  /* --- Tipografia e medidas --- */
+  --font:'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --pad:20px;          /* respiro lateral do container */
+  --maxw:1280px;       /* largura máxima do conteúdo */
+  --nav-h:70px;        /* altura da barra fixa */
+  --ease:cubic-bezier(.16,.84,.24,1);
+}
+
+/* ============================================================
+   TEMA ESCURO (padrão)
+   ============================================================ */
+[data-theme="dark"]{
+  color-scheme:dark;
+
+  --bg:#0B0E10;              /* fundo da página */
+  --bg-alt:#1A2A2D;          /* fundo cheio (usado em elementos pequenos) */
+  --bg-alt-sec:rgba(26,42,45,.82);   /* faixa de seção: deixa a cor do fundo passar */
+  --card:#1A2A2D;            /* card sobre o fundo base */
+  --card-sunken:#0B0E10;     /* card sobre a faixa alternada */
+  --panel:#1A2A2D;           /* inputs, cabeçalhos internos */
+  --recess:#0B0E10;          /* tiras rebaixadas dentro de cards */
+
+  /* Teal aplicado. No escuro o #08383C não funciona como texto (some no
+     fundo), então ele entra como SUPERFÍCIE: ladrilho de ícone, trilho,
+     barra e borda. É isso que faz a marca deixar de ser só laranja. */
+  --teal-fill:#08383C;               /* ladrilho de ícone, avatar, chip */
+  --teal-fill-hi:#0C4B50;            /* a mesma cor um passo acima, no hover */
+  --teal-edge:rgba(8,56,60,.95);     /* borda e trilho */
+  --teal-veil:rgba(8,56,60,.34);     /* véu sobre o card */
+
+  --text:#FFFFFF;            /* texto principal */
+  --text-2:#8C979A;          /* texto secundário */
+
+  --line:rgba(140,151,154,.20);
+  --line-soft:rgba(140,151,154,.11);
+  --line-teal:rgba(8,56,60,.85);     /* borda que mostra a marca */
+
+  --nav-bg:rgba(11,14,16,.86);
+  --shadow:0 40px 80px -50px rgba(0,0,0,.95);
+  --card-shadow:none;
+  --glow:rgba(8,56,60,.85);
+  --glow-clay:rgba(193,102,57,.42);   /* brilho no hover dos cards */
+  --clay-forte:#B25B32;               /* cobre do balão das siglas: branco por cima fica legível */
+
+  --btn-fill:#FFFFFF;        /* preenchimento do hover dos botões */
+  --btn-fill-tx:#0B0E10;
+
+  --grain-blend:screen;
+  --grain-op:.04;
+
+  --logo-v:#FFFFFF;          /* cor do "V" da marca */
+
+  /* Manchas de cor do fundo que se movem com a rolagem */
+  --aurora-clay:   rgba(193,102,57,.15);
+  --aurora-clay-0: rgba(193,102,57,0);
+  --aurora-teal:   rgba(8,56,60,.72);
+  --aurora-teal-0: rgba(8,56,60,0);
+}
+
+/* ============================================================
+   TEMA CLARO
+   ============================================================ */
+[data-theme="light"]{
+  color-scheme:light;
+
+  --bg:#FFFFFF;
+  --bg-alt:rgba(8,56,60,.055);
+  --bg-alt-sec:rgba(8,56,60,.055);
+  --card:#FFFFFF;
+  --card-sunken:#FFFFFF;
+  --panel:rgba(8,56,60,.07);
+  --recess:rgba(8,56,60,.05);
+
+  --teal-fill:#08383C;
+  --teal-fill-hi:#0C4B50;
+  --teal-edge:rgba(8,56,60,.55);
+  --teal-veil:rgba(8,56,60,.07);
+
+  --text:#0B0E10;
+  --text-2:rgba(11,14,16,.62);
+
+  --line:rgba(11,14,16,.14);
+  --line-soft:rgba(11,14,16,.08);
+  --line-teal:rgba(8,56,60,.30);
+
+  --nav-bg:rgba(255,255,255,.9);
+  --shadow:0 26px 54px -36px rgba(11,14,16,.3);
+  --card-shadow:0 2px 16px -8px rgba(11,14,16,.14);
+  --glow:rgba(8,56,60,.13);
+  --glow-clay:rgba(193,102,57,.20);
+  --clay-forte:#B25B32;
+
+  --btn-fill:#0B0E10;
+  --btn-fill-tx:#FFFFFF;
+
+  --grain-blend:multiply;
+  --grain-op:.03;
+
+  --logo-v:#08383C;          /* no claro o V branco sumiria */
+
+  /* No tema claro as manchas precisam ser bem mais discretas */
+  --aurora-clay:   rgba(193,102,57,.13);
+  --aurora-clay-0: rgba(193,102,57,0);
+  --aurora-teal:   rgba(8,56,60,.16);
+  --aurora-teal-0: rgba(8,56,60,0);
+}
+
+/* ============================================================
+   Medidas por breakpoint
+   ============================================================ */
+@media (min-width:600px){
+  :root{ --pad:32px }
+}
+@media (min-width:900px){
+  :root{ --pad:44px; --nav-h:80px }
+}

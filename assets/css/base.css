@@ -1,0 +1,164 @@
+/* ============================================================
+   VEKTRA - BASE
+   Reset, tipografia geral, container, textura e animação
+   de entrada. Nada aqui é específico de uma página.
+   ============================================================ */
+
+*,*::before,*::after{ box-sizing:border-box }
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:96px;      /* compensa a nav fixa nas âncoras */
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:16px;
+  font-weight:400;
+  line-height:1.6;
+  letter-spacing:-.005em;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  transition:background .4s ease, color .4s ease;
+}
+body.locked{ overflow:hidden }   /* trava o scroll com o modal aberto */
+
+img,svg{ display:block; max-width:100% }
+a{ color:inherit; text-decoration:none }
+button,input,select,textarea{ font:inherit; color:inherit }
+::selection{ background:var(--clay); color:var(--const-white) }
+
+/* ---------- Container ---------- */
+.wrap{
+  width:100%;
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding-left:var(--pad);
+  padding-right:var(--pad);
+}
+section{ position:relative }
+
+/* ---------- Grade de fundo (planta baixa) ---------- */
+.gridlines{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+  background-size:calc(100% / 4) 100%;
+  mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
+}
+@media (min-width:900px){
+  .gridlines{ background-size:calc(100% / 6) 100% }
+}
+
+/* ---------- Fundo vivo: manchas que se movem com a rolagem ----------
+   O JS escreve --sp (0 no topo da pagina, 1 no fim) e cada mancha
+   se desloca em ritmo diferente, criando profundidade.
+   As seções ficam por cima; as que não têm fundo próprio deixam
+   a cor passar. ------------------------------------------------ */
+.aurora{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  contain:strict;
+}
+.aurora i{
+  position:absolute;display:block;border-radius:50%;
+  will-change:transform;
+}
+.aurora i:nth-child(1){
+  width:70vw;height:70vw;left:-18vw;top:-26vw;
+  background:radial-gradient(circle closest-side, var(--aurora-clay), var(--aurora-clay-0));
+  transform:translate3d(calc(var(--sp,0) * 14vw), calc(var(--sp,0) * 62vh), 0);
+}
+.aurora i:nth-child(2){
+  width:80vw;height:80vw;right:-30vw;top:18vh;
+  background:radial-gradient(circle closest-side, var(--aurora-teal), var(--aurora-teal-0));
+  transform:translate3d(calc(var(--sp,0) * -16vw), calc(var(--sp,0) * -78vh), 0);
+}
+.aurora i:nth-child(3){
+  width:56vw;height:56vw;left:24vw;bottom:-30vw;
+  background:radial-gradient(circle closest-side, var(--aurora-clay), var(--aurora-clay-0));
+  transform:translate3d(calc(var(--sp,0) * -22vw), calc(var(--sp,0) * -46vh), 0);
+}
+
+/* O conteúdo fica sempre acima das manchas */
+main,
+.footer{ position:relative; z-index:1 }
+
+/* ---------- Textura de grão ---------- */
+.grain{
+  position:fixed;inset:-120px;z-index:9999;pointer-events:none;
+  opacity:var(--grain-op);
+  mix-blend-mode:var(--grain-blend);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grainShift 700ms steps(2) infinite;
+}
+@keyframes grainShift{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(-14px,8px)}
+  50%{transform:translate(9px,-11px)}
+  75%{transform:translate(-6px,-5px)}
+  100%{transform:translate(0,0)}
+}
+
+/* ---------- Tipografia ---------- */
+h1,h2,h3,h4{
+  margin:0;
+  font-weight:700;
+  letter-spacing:-.03em;
+  line-height:1.08;
+}
+
+.eyebrow{
+  margin:0;
+  font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-2);
+  display:flex;align-items:center;gap:12px;
+}
+.eyebrow::before{
+  content:"";width:26px;height:2px;flex:none;border-radius:2px;background:var(--clay);
+}
+
+/* Números que contam ou trocam de valor usam dígitos de largura fixa,
+   senão o texto "pula" a cada quadro da animação. */
+.count,
+.m1-head b,
+.m2-head b,
+.m2-out b,
+.roi-cols b,
+.roi-foot b,
+.m1-pill,
+.proof-stat .big,
+.sim-row .vl,
+.sim-total b,
+.tresult{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+}
+
+.hl{ color:var(--clay) }
+
+/* ---------- Reveal ao rolar ----------
+   O JS adiciona .in quando o elemento entra na viewport.
+   O atraso em cascata sai do inline style --d.
+------------------------------------------------- */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .8s var(--ease), transform .8s var(--ease);
+  transition-delay:var(--d,0ms);
+}
+.reveal.in{ opacity:1; transform:none }
+
+/* ---------- Acessibilidade: movimento reduzido ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+    scroll-behavior:auto!important;
+  }
+  .reveal{ opacity:1; transform:none }
+}

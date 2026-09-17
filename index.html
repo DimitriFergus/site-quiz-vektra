@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Segurança: só carrega o que é do próprio site, fontes do Google, Meta Pixel, Google Ads e o webhook de leads.
+     Se usar um webhook de outro domínio, acrescente-o em connect-src. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://connect.facebook.net https://www.googletagmanager.com https://*.googleadservices.com https://*.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.facebook.com https://connect.facebook.net https://www.googletagmanager.com https://*.google.com https://*.google.com.br https://*.doubleclick.net https://*.googleadservices.com; connect-src 'self' https://*.facebook.com https://connect.facebook.net https://www.googletagmanager.com https://*.google.com https://*.google.com.br https://*.doubleclick.net https://*.googleadservices.com https://*.google-analytics.com https://script.google.com https://script.googleusercontent.com https://*.make.com https://hooks.zapier.com; frame-src https://*.doubleclick.net; object-src 'none'; base-uri 'self'; form-action 'self'; worker-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Diagnóstico da Construtora | Vektra Inteligência Contábil</title>
+<meta name="description" content="Responda 10 perguntas em 2 minutos e descubra onde sua construtora pode estar perdendo margem com tributos, custo por obra e obrigações. Diagnóstico gratuito da Vektra.">
+<meta name="theme-color" content="#0B0E10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sua construtora está pagando imposto a mais? Faça o diagnóstico">
+<meta property="og:description" content="10 perguntas, 2 minutos. Descubra os pontos que podem estar comprometendo a margem das suas obras.">
+<meta property="og:image" content="assets/img/icone-512.png">
+<link rel="icon" href="assets/img/icone-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/img/icone-512.png" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/icone-180.png">
+
+<!-- Define o tema antes da primeira pintura. NÃO adicionar defer/async. -->
+<script src="assets/js/theme-init.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Estilos: a ordem importa (tokens primeiro, página por último) -->
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/quiz.css">
+
+<script defer src="assets/js/config.js"></script>
+<script defer src="assets/js/tracking.js"></script>
+<script defer src="assets/js/theme.js"></script>
+<script defer src="assets/js/quiz.js"></script>
+</head>
+
+<body>
+<!-- Meta Pixel: versão sem JavaScript. O carregamento normal do pixel fica
+     em assets/js/tracking.js, com o ID vindo do assets/js/config.js. -->
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1067843952522851&ev=PageView&noscript=1"></noscript>
+
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ================= NAV =================
+     Sem links de saída: quem chega pelo anúncio fica no quiz. -->
+<header class="nav scrolled" id="nav">
+  <div class="wrap">
+    <a href="./" class="brand" aria-label="Vektra Inteligência Contábil">
+      <img class="brand-logo brand-logo-escuro" src="assets/img/logo-horizontal-escuro.png"
+           width="560" height="102" alt="Vektra Inteligência Contábil">
+      <img class="brand-logo brand-logo-claro" src="assets/img/logo-horizontal-claro.png"
+           width="560" height="102" alt="" aria-hidden="true">
+    </a>
+
+    <div class="nav-right">
+      <span class="nav-selo"><i class="dot-live"></i>Diagnóstico gratuito</span>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Alternar modo claro e escuro" title="Alternar tema">
+        <svg class="ic ic-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.9"/>
+          <path d="M12 1.8v2.6M12 19.6v2.6M22.2 12h-2.6M4.4 12H1.8M19.2 4.8l-1.9 1.9M6.7 17.3l-1.9 1.9M19.2 19.2l-1.9-1.9M6.7 6.7L4.8 4.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+        </svg>
+        <svg class="ic ic-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20.5 14.6A8.8 8.8 0 019.4 3.5a8.8 8.8 0 1011.1 11.1z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="topo">
+
+<!-- ================= 1. ABERTURA ================= -->
+<section class="tela tela-intro ativa" id="telaIntro" aria-labelledby="introTitulo">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap intro-grid">
+
+    <div class="intro-copy">
+      <p class="eyebrow">Diagnóstico para construtoras e incorporadoras</p>
+
+      <h1 id="introTitulo">
+        <span class="line"><i>Sua construtora</i></span>
+        <span class="line"><i>pode estar pagando</i></span>
+        <span class="line"><i>imposto <span class="hl">a mais.</span></i></span>
+      </h1>
+
+      <p class="intro-sub">
+        Responda 10 perguntas rápidas e descubra os pontos de tributação, custo por obra
+        e obrigações que podem estar comprometendo a sua margem. No final, você recebe
+        um diagnóstico com até 3 pontos de atenção.
+      </p>
+
+      <div class="intro-cta">
+        <button type="button" class="btn btn-lg" id="btnComecar">
+          <span>Começar o diagnóstico
+            <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+              <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <span class="intro-note"><i class="dot-live"></i> Gratuito, sem compromisso e sem precisar de documento.</span>
+      </div>
+
+      <div class="intro-meta">
+        <div><span>10</span><small>Perguntas objetivas</small></div>
+        <div><span>2 min</span><small>Para responder</small></div>
+        <div><span>3 pontos</span><small>No máximo, no seu diagnóstico</small></div>
+      </div>
+    </div>
+
+    <div class="intro-visual" aria-hidden="true">
+      <div class="preview">
+        <div class="preview-bar">
+          <i></i><i></i><i></i>
+          <span>Diagnóstico Vektra</span>
+        </div>
+        <div class="preview-body">
+          <p class="preview-label">Índice de atenção</p>
+          <div class="preview-gauge">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" class="g-trilho"/>
+              <circle cx="60" cy="60" r="50" class="g-valor" pathLength="100"/>
+            </svg>
+            <b>68<small>/100</small></b>
+          </div>
+          <ul class="preview-list">
+            <li><em>01</em>Margem por obra invisível</li>
+            <li><em>02</em>Retenção de 11% virando custo</li>
+            <li><em>03</em>Regime sem comparação</li>
+          </ul>
+        </div>
+      </div>
+      <div class="preview-tag">Exemplo de resultado</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= 2. PERGUNTAS ================= -->
+<section class="tela tela-quiz" id="telaQuiz" aria-label="Perguntas do diagnóstico">
+  <div class="wrap quiz-wrap">
+
+    <div class="progresso">
+      <div class="progresso-topo">
+        <button type="button" class="voltar" id="btnVoltar">
+          <svg width="15" height="11" viewBox="0 0 17 12" fill="none" aria-hidden="true"><path d="M16 6H2M7 1L2 6l5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Voltar
+        </button>
+        <span class="progresso-num" id="progNum">Pergunta 01 de 10</span>
+      </div>
+      <div class="progresso-trilho" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" id="progBar">
+        <i id="progFill"></i>
+      </div>
+    </div>
+
+    <!-- Preenchido por assets/js/quiz.js -->
+    <div class="pergunta" id="pergunta" aria-live="polite"></div>
+
+    <p class="quiz-dica">Dica: você pode responder pelas teclas <kbd>A</kbd> a <kbd>E</kbd>.</p>
+  </div>
+</section>
+
+<!-- ================= 3. ANALISANDO ================= -->
+<section class="tela tela-analise" id="telaAnalise" aria-live="polite">
+  <div class="wrap analise-wrap">
+    <div class="analise-simbolo" aria-hidden="true">
+      <img class="simbolo simbolo-escuro" src="assets/img/simbolo-claro.png" width="128" height="128" alt="">
+      <img class="simbolo simbolo-claro"  src="assets/img/simbolo-teal.png"  width="128" height="128" alt="">
+    </div>
+    <h2>Analisando suas respostas…</h2>
+    <ul class="analise-lista" id="analiseLista">
+      <li>Cruzando perfil e regime tributário</li>
+      <li>Verificando custo por obra e retenções</li>
+      <li>Priorizando os pontos de atenção</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 4. CAPTURA ================= -->
+<section class="tela tela-captura" id="telaCaptura" aria-labelledby="capTitulo">
+  <div class="wrap captura-grid">
+
+    <div class="captura-copy">
+      <p class="eyebrow">Diagnóstico concluído</p>
+      <h2 id="capTitulo">Seu diagnóstico está <span class="hl">pronto.</span></h2>
+      <p>Encontramos <b id="capQtd">pontos</b> que merecem a sua atenção. Informe para quem enviar e veja
+        o resultado agora mesmo. Um especialista em construção civil pode aprofundar a análise com você,
+        olhando uma obra de cada vez.</p>
+      <ul class="captura-lista">
+        <li>Resultado na tela, logo após enviar</li>
+        <li>Conversa inicial de 20 minutos, sem custo</li>
+        <li>Seus dados não são compartilhados com ninguém</li>
+      </ul>
+    </div>
+
+    <form class="form-card" id="leadForm" novalidate>
+      <h3>Para quem enviamos o diagnóstico?</h3>
+      <p>Leva menos de 30 segundos.</p>
+
+      <div class="field">
+        <label for="f-nome">Seu nome</label>
+        <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" required>
+        <span class="msg-err">Informe seu nome.</span>
+      </div>
+
+      <div class="field">
+        <label for="f-whats">WhatsApp</label>
+        <input id="f-whats" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="(85) 91234-5678" required>
+        <span class="msg-err">Informe um WhatsApp válido com DDD.</span>
+      </div>
+
+      <div class="field">
+        <label for="f-email">E-mail</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" placeholder="voce@suaconstrutora.com.br" required>
+        <span class="msg-err">Informe um e-mail válido.</span>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="f-empresa">Empresa</label>
+          <input id="f-empresa" name="empresa" type="text" autocomplete="organization" placeholder="Nome da construtora" required>
+          <span class="msg-err">Informe o nome da empresa.</span>
+        </div>
+
+        <div class="field">
+          <label for="f-cargo">Seu cargo</label>
+          <select id="f-cargo" name="cargo" required>
+            <option value="">Selecione</option>
+            <option>Sócio ou dono</option>
+            <option>Diretor ou gerente financeiro</option>
+            <option>Engenheiro ou gestor de obras</option>
+            <option>Administrativo</option>
+            <option>Outro</option>
+          </select>
+          <span class="msg-err">Selecione seu cargo.</span>
+        </div>
+      </div>
+
+      <div class="consent">
+        <input type="checkbox" id="f-lgpd" required>
+        <label for="f-lgpd">Autorizo a Vektra a entrar em contato pelo WhatsApp e e-mail sobre este diagnóstico, conforme a LGPD.</label>
+      </div>
+
+      <button type="submit" class="btn btn-lg">
+        <span>Ver meu diagnóstico
+          <svg class="arw" width="17" height="12" viewBox="0 0 17 12" fill="none" aria-hidden="true">
+            <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
+      <p class="form-status" id="formStatus" role="status"></p>
+    </form>
+
+  </div>
+</section>
+
+<!-- ================= 5. RESULTADO ================= -->
+<section class="tela tela-resultado" id="telaResultado" aria-labelledby="resTitulo">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+
+    <div class="res-head">
+      <p class="eyebrow" id="resEyebrow">Resultado do diagnóstico</p>
+      <h2 id="resTitulo">…</h2>
+      <p id="resTexto"></p>
+    </div>
+
+    <div class="res-grid">
+      <div class="res-card res-indice">
+        <p class="mock-label">Índice de atenção</p>
+        <div class="gauge" id="gauge">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="50" class="g-trilho"/>
+            <circle cx="60" cy="60" r="50" class="g-valor" pathLength="100" id="gaugeValor"/>
+          </svg>
+          <b><span id="gaugeNum" class="count">0</span><small>/100</small></b>
+        </div>
+        <span class="nivel" id="resNivel">…</span>
+        <!-- Escala com o marcador na posição do índice -->
+        <div class="escala">
+          <div class="escala-trilho" aria-hidden="true">
+            <i class="z-baixo"></i><i class="z-moderado"></i><i class="z-alto"></i>
+            <span class="escala-pin" id="escalaPin"><b id="escalaPinNum">0</b></span>
+          </div>
+          <div class="escala-legenda" aria-hidden="true">
+            <span>Baixo</span><span>Moderado</span><span>Alto</span>
+          </div>
+        </div>
+
+        <!-- Gráfico de barras: quanto cada área pesa no índice -->
+        <div class="areas">
+          <p class="mock-label">Atenção por área</p>
+          <ul class="barras" id="resBarras"></ul>
+        </div>
+      </div>
+
+      <div class="res-card res-pontos">
+        <p class="mock-label">Pontos de atenção</p>
+        <ol class="pontos" id="resPontos"></ol>
+      </div>
+    </div>
+
+    <div class="res-cta" id="resCta">
+      <div>
+        <h3 id="ctaTitulo">Quer saber quanto esses pontos custam na sua obra?</h3>
+        <p id="ctaTexto">Um especialista da Vektra olha uma obra sua, com os documentos na mão, e mostra
+          onde a margem está indo embora. Conversa inicial gratuita e sem compromisso.</p>
+      </div>
+      <a href="#" class="btn btn-lg" id="btnWhats" target="_blank" rel="noopener">
+        <span>
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1112 21.8zM20.5 3.5A11.8 11.8 0 002 17.7L.3 24l6.4-1.7A11.8 11.8 0 0024 12c0-3.2-1.2-6.1-3.5-8.5z"/></svg>
+          Falar com um especialista
+        </span>
+      </a>
+    </div>
+
+    <p class="res-aviso">Diagnóstico orientativo, gerado a partir das suas respostas. Não substitui a análise
+      dos documentos da empresa por um contador.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer footer-quiz">
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>© <span id="ano">2026</span> Vektra Inteligência Contábil · Contabilidade especializada em construção civil · Fortaleza, CE</span>
+      <a href="https://vektracontabil.com.br" id="linkSite" target="_blank" rel="noopener" style="color:var(--clay);font-weight:500">Conheça a Vektra ↗</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
