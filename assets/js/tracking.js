@@ -4,17 +4,16 @@
    Fica em arquivo porque a política de segurança (CSP) não permite
    script escrito dentro do HTML. Os IDs vêm do config.js.
 
-   Eventos enviados à Meta:
-     PageView               ao abrir a página
-     ViewContent            ao começar o quiz
-     QuizPergunta (custom)  a cada resposta, com o número da pergunta
-     Contact                ao clicar no WhatsApp do resultado
+   São só quatro eventos, de propósito: quanto menos ruído, mais fácil
+   ler o relatório e otimizar a campanha.
 
-   Os quatro abaixo só disparam na última tela (o resultado), juntos,
-   para contar apenas quem chegou até o fim:
+     PageView               ao abrir a página
+
+   Os três seguintes saem juntos, na última tela (o resultado), para
+   contar apenas quem chegou até o fim:
      QuizConcluido (custom) questionário finalizado, com índice e faixa
-     CompleteRegistration   cadastro do cliente concluído
-     Lead                   o mesmo cadastro, no evento padrão de lead
+     CompleteRegistration   a "Inscrição" no Gerenciador de Eventos:
+                            o cadastro do cliente
      LeadQualificado        só para leads de faixa A ou B. Use este
                             evento como otimização da campanha para a
                             Meta buscar mais gente parecida com eles.

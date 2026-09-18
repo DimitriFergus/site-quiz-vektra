@@ -274,8 +274,6 @@
     });
     $('progFill').style.width = ((atual + 1) / TOTAL * 100) + '%';
 
-    window.vkTrack && window.vkTrack('QuizPergunta', { pergunta: atual + 1, id: p.id, resposta: p.op[i].t });
-
     setTimeout(function () {
       if (atual < TOTAL - 1) {
         trocar(atual + 1, 'vai');
@@ -535,9 +533,8 @@
     /* Questionario finalizado */
     window.vkTrack && window.vkTrack('QuizConcluido', { indice: r.indice, faixa: r.faixa });
 
-    /* Cadastro do cliente */
+    /* Inscricao: o cadastro do cliente */
     window.vkTrack && window.vkTrack('CompleteRegistration', dadosPixel, true);
-    window.vkTrack && window.vkTrack('Lead', dadosPixel, true);
     if (r.faixa === 'A' || r.faixa === 'B') {
       window.vkTrack && window.vkTrack('LeadQualificado', dadosPixel);
     }
@@ -628,10 +625,6 @@
     }, CFG.reduced ? 0 : 300);
   }
 
-  $('btnWhats').addEventListener('click', function () {
-    window.vkTrack && window.vkTrack('Contact', { lead_tier: resultado && resultado.faixa }, true);
-  });
-
   /* ============================================================
      Início
      ============================================================ */
@@ -639,7 +632,6 @@
     atual = 0;
     mostrarTela('telaQuiz');
     desenhar();
-    window.vkTrack && window.vkTrack('ViewContent', { content_name: 'Diagnostico Construtora' }, true);
   });
 
   if ($('ano')) $('ano').textContent = new Date().getFullYear();
