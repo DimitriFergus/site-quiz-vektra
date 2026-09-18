@@ -402,7 +402,6 @@
       var n = resultado.pontos.length;
       $('capQtd').textContent = n === 0 ? 'poucos pontos' : n === 1 ? '1 ponto' : n + ' pontos';
       mostrarTela('telaCaptura');
-      window.vkTrack && window.vkTrack('QuizConcluido', { indice: resultado.indice, faixa: resultado.faixa });
     }, passo * (itens.length + 1) + 200);
   }
 
@@ -480,17 +479,6 @@
 
     enviarWebhook(lead);
 
-    var dadosPixel = {
-      content_name: 'Diagnostico Construtora',
-      lead_tier: lead.faixa,
-      value: { A: 300, B: 120, C: 30, D: 0 }[lead.faixa],
-      currency: 'BRL'
-    };
-    window.vkTrack && window.vkTrack('Lead', dadosPixel, true);
-    if (lead.faixa === 'A' || lead.faixa === 'B') {
-      window.vkTrack && window.vkTrack('LeadQualificado', dadosPixel);
-    }
-
     status.classList.add('ok');
     status.textContent = 'Tudo certo, ' + lead.nome.split(' ')[0] + '! Gerando seu diagnóstico…';
     setTimeout(mostrarResultado, CFG.reduced ? 50 : 500);
@@ -527,6 +515,33 @@
       d: 'Suas respostas mostram bom controle. Ainda assim, uma revisão por obra costuma revelar ajustes finos de tributação que fazem diferença no fim do ano.'
     }
   };
+
+  /* Eventos de conversao. Ficam aqui, na ultima tela, para contar so
+     quem realmente chegou ao fim: questionario respondido, cadastro
+     enviado e diagnostico na frente do usuario. */
+  var eventosFinaisEnviados = false;
+
+  function dispararEventosFinais(r) {
+    if (eventosFinaisEnviados || !r || !r.lead) return;
+    eventosFinaisEnviados = true;
+
+    var dadosPixel = {
+      content_name: 'Diagnostico Construtora',
+      lead_tier: r.faixa,
+      value: { A: 300, B: 120, C: 30, D: 0 }[r.faixa],
+      currency: 'BRL'
+    };
+
+    /* Questionario finalizado */
+    window.vkTrack && window.vkTrack('QuizConcluido', { indice: r.indice, faixa: r.faixa });
+
+    /* Cadastro do cliente */
+    window.vkTrack && window.vkTrack('CompleteRegistration', dadosPixel, true);
+    window.vkTrack && window.vkTrack('Lead', dadosPixel, true);
+    if (r.faixa === 'A' || r.faixa === 'B') {
+      window.vkTrack && window.vkTrack('LeadQualificado', dadosPixel);
+    }
+  }
 
   function mostrarResultado() {
     var r = resultado;
@@ -577,6 +592,7 @@
     $('btnWhats').href = CFG.link(msg);
 
     mostrarTela('telaResultado');
+    dispararEventosFinais(r);
 
     /* Animações do anel, do número e dos pontos */
     var alvo = r.indice;

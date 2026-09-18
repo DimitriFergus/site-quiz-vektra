@@ -8,11 +8,16 @@
      PageView               ao abrir a página
      ViewContent            ao começar o quiz
      QuizPergunta (custom)  a cada resposta, com o número da pergunta
-     Lead                   ao enviar o formulário (com lead_tier)
+     Contact                ao clicar no WhatsApp do resultado
+
+   Os quatro abaixo só disparam na última tela (o resultado), juntos,
+   para contar apenas quem chegou até o fim:
+     QuizConcluido (custom) questionário finalizado, com índice e faixa
+     CompleteRegistration   cadastro do cliente concluído
+     Lead                   o mesmo cadastro, no evento padrão de lead
      LeadQualificado        só para leads de faixa A ou B. Use este
                             evento como otimização da campanha para a
                             Meta buscar mais gente parecida com eles.
-     Contact                ao clicar no WhatsApp do resultado
    ============================================================ */
 (function () {
   'use strict';
